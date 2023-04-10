@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+    # image project
+    app-dashboard:
+        container_name: app-dashboard
+        build:
+            args:
+                user: jpls
+                uid: 1000
+            context: .
+            dockerfile: Dockerfile
+        image: especializati/laravel9-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis-dashboard
+        networks:
+            - laravel-dashboard
+
+    # nginx
+    nginx-dashboard:
+        container_name: nginx-dashboard
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8181:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks:
+            - laravel-dashboard
+
+    # queue
+    queue-dashboard:
+        container_name: queue-dashboard
+        image: especializati/laravel9-app
+        restart: unless-stopped
+        command: "php artisan queue:work"
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis-dashboard
+            - app-dashboard
+        networks:
+            - laravel-dashboard
+
+    # redis
+    redis-dashboard:
+        container_name: redis-dashboard
+        image: redis:latest
+        networks:
+            - laravel-dashboard
+
+networks:
+    laravel-dashboard:
+        driver: bridge
