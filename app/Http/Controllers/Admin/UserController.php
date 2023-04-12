@@ -21,11 +21,10 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        dd($request->filter);
         $users = $this->service->getAll(
             filter: $request->filter ?? ""
         );
-        dd($users);
+
         return view('admin.users.index', compact('users'));
     }
 
