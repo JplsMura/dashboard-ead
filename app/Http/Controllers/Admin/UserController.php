@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         $data = $request->only(['name', 'email']);
         if ($request->password)
-            $data['password'] = bcrypt($data['password']);
+            $data['password'] = bcrypt($request->password);
 
         if (!$this->service->update($id, $data)) {
             return back();

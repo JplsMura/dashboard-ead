@@ -15,4 +15,6 @@
             </div>
         </div>
     </div>
+
+    @include('admin.users._partials.back-index')
 @endsection

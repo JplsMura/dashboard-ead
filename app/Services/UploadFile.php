@@ -9,6 +9,8 @@ class UploadFile
 {
     public function store(UploadedFile $file, string $path): string
     {
+        $this->removeFile($path);
+
         return $file->store($path);
     }
 
