@@ -63,9 +63,4 @@ class Admin extends Authenticatable
             get: fn ($value) => $value ? Storage::url($value) : null,
         );
     }
-
-    // public function getCreatedAtAttribute()
-    // {
-    //     return Carbon::make($this->attributes['created_at'])->format('d/m/Y');
-    // }
 }

@@ -23,11 +23,11 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        // $admins = $this->service->getAll(
-        //     filter: $request->filter ?? ""
-        // );
+        $admins = $this->service->getAll(
+            filter: $request->filter ?? ""
+        );
 
-        return view('admin.home.index');
+        return view('admin.admins.index', compact('admins'));
     }
 
     public function create()
