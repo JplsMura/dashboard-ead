@@ -22,6 +22,7 @@ class CourseRepository implements CourseRepositoryInterface
                                 $query->orWhere('name', 'LIKE', "%{$filter}%");
                             }
                         })
+                        ->orderBy('created_at', 'desc')
                         ->get();
 
         return $admins->toArray();

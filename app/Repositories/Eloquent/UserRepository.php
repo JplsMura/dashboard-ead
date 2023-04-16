@@ -23,6 +23,7 @@ class UserRepository implements UserRepositoryInterface
                                 $query->orWhere('name', 'LIKE', "%{$filter}%");
                             }
                         })
+                        ->orderBy('created_at', 'desc')
                         ->get();
 
         return $users->toArray();

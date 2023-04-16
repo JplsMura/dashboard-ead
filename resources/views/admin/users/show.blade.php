@@ -7,6 +7,8 @@
         Detalhes do Usuário {{ $user->name }}
     </h1>
 
+    @include('admin.includes.alerts')
+
     <div class="flex flex-wrap">
         <div class="w-full my-6 pr-0 lg:pr-2">
             <div class="leading-loose">

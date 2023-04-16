@@ -23,6 +23,7 @@ class LessonRepository implements LessonRepositoryInterface
                             }
                         })
                         ->where('module_id', $moduleId)
+                        ->orderBy('created_at', 'desc')
                         ->get();
 
         return $data->toArray();

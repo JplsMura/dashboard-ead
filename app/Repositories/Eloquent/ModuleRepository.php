@@ -23,6 +23,7 @@ class ModuleRepository implements ModuleRepositoryInterface
                             }
                         })
                         ->where('course_id', $courseId)
+                        ->orderBy('created_at', 'desc')
                         ->get();
 
         return $data->toArray();
