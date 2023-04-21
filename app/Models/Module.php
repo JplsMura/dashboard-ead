@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Traits\UuidTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,6 +32,13 @@ class Module extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::make($value)->format('d/m/Y'),
+        );
+    }
 
     public function course()
     {

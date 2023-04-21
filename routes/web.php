@@ -16,7 +16,7 @@ Route::prefix('admin')->group(function () {
     /**
      * Routes Lessons
      */
-    Route::resource('/modules/{moduleId}/lesson', LessonController::class);
+    Route::resource('/modules/{moduleId}/lessons', LessonController::class);
 
     /**
      * Routes Modules

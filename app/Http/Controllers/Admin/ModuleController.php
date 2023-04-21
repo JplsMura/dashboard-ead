@@ -30,6 +30,7 @@ class ModuleController extends Controller
             courseId: $courseId,
             filter: $request->filter ?? ''
         );
+
         $modules = convertItemsOfArrayToObject($data);
 
         return view('admin/courses/modules/index-modules', compact('course', 'modules'));
@@ -50,8 +51,6 @@ class ModuleController extends Controller
 
         $this->repository
                 ->createByCourse($courseId, $request->only(['name']));
-
-        // $course->modules()->create($request->only(['name']));
 
         return redirect()->route('modules.index', $courseId);
     }

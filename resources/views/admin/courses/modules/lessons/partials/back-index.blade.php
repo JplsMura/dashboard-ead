@@ -1,4 +1,4 @@
 <a class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-    href="{{ route('modules.index', $course->id) }}">
+    href="{{ route('lessons.index', $course->id) }}">
     <i class="fas fa-arrow-left"></i>
 </a>
