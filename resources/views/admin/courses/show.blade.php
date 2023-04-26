@@ -14,11 +14,11 @@
             <div class="leading-loose">
                 <form class="p-10 bg-white rounded shadow-xl" action="{{ route('courses.destroy', $course->id) }}"
                     method="POST">
-                    <ul>
-                        <li><b>Nome:</b> {{ $course->name }}</li>
-                        <li><b>Descrição:</b> {{ $course->description }}</li>
-                        <li><b>Disponibilidade:</b> {{ $course->available ? 'Publicado' : 'Não Publicado' }}</li>
-                        <li><b>Data de criação:</b> {{ $course->created_at }}</li>
+                    <ul class="m-1">
+                        <li class="m-3"><b>Nome:</b> {{ $course->name }}</li>
+                        <li class="m-3"><b>Descrição:</b> {{ $course->description }}</li>
+                        <li class="m-3"><b>Disponibilidade:</b> {{ $course->available ? 'Publicado' : 'Não Publicado' }}</li>
+                        <li class="m-3"><b>Data de criação:</b> {{ $course->created_at }}</li>
                     </ul>
                     @method('DELETE')
                     @csrf

@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', "Aulas do módulo: {{ $module->name }}")
+@section('title', "Aulas do módulo: { $module->name }")
 
 @section('content')
 
     <h1 class="text-2xl text-black pb-6">
-        Aulas do módulo: {{ $module->name }}
+        Aulas do Módulo: <strong>{{ $module->name }}</strong>
         <a class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
             href="{{ route('lessons.create', $module->id) }}">
             <i class="fas fa-plus"></i>
@@ -13,7 +13,12 @@
     </h1>
 
     <div class="w-full mt-12">
-        {{-- @include('admin.includes.form-search', ['routerName' => 'modules.index']) --}}
+
+        @include('admin.includes.form-search', [
+            'routerName' => 'lessons.index',
+            'params' => $module->id,
+        ])
+
         <div class="bg-white overflow-auto">
             <table class="min-w-full leading-normal">
                 <thead>
@@ -70,27 +75,19 @@
                                 </p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <a href="{{ route('lessons.show', [$lesson->id, $lesson->id]) }}">
-                                    <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Detalhes</span>
-                                    </span>
-                                </a>
-                                <a href="{{ route('lessons.edit', [$course->id, $lesson->id]) }}">
+                                <a href="{{ route('lessons.show', [$module->id, $lesson->id]) }}">
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Editar</span>
+                                        <span class="relative">Detalhes</span>
                                     </span>
                                 </a>
-                                <a href="{{ route('lessons.index', $lesson->id) }}">
-                                    <span class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
+                                <a href="{{ route('lessons.edit', [$module->id, $lesson->id]) }}">
+                                    <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
                                         <span aria-hidden
-                                            class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Aulas</span>
+                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Editar</span>
                                     </span>
                                 </a>
                             </td>
@@ -106,8 +103,4 @@
             </table>
         </div>
     </div>
-
-    <div class="px-5 py-5">
-    </div>
-
 @endsection
