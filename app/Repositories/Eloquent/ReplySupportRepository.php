@@ -19,7 +19,7 @@ class ReplySupportRepository implements ReplySupportRepositoryInterface
     {
         $replySupport = $this->model->create($data);
 
-        event(new SupportReplied($replySupport));
+        // event(new SupportReplied($replySupport));
 
         return $replySupport;
         // $support->replies()->create($data);
